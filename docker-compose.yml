@@ -1,0 +1,68 @@
+# docker-compose.yml
+version: '3'
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./user-service:/app
+    networks:
+      - e-commerce-network
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "5002:5000"
+    volumes:
+      - ./product-service:/app
+    networks:
+      - e-commerce-network
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "5003:5000"
+    volumes:
+      - ./order-service:/app
+    networks:
+      - e-commerce-network
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "5004:5000"
+    volumes:
+      - ./payment-service:/app
+    networks:
+      - e-commerce-network
+
+  recommendation-service:
+    build: ./recommendation-service
+    ports:
+      - "5005:5000"
+    volumes:
+      - ./recommendation-service:/app
+    networks:
+      - e-commerce-network
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api-gateway:/app
+    networks:
+      - e-commerce-network
+
+  frontend:
+    build: ./ecommerce-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ecommerce-frontend:/app
+    networks:
+      - e-commerce-network
+
+networks:
+  e-commerce-network:
